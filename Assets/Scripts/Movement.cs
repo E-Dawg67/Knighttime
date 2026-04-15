@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using System.Collections;
+
 public class Movement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -11,6 +13,8 @@ public class Movement : MonoBehaviour
     private GameObject colided;
     private Rigidbody rb;
     private bool jump = true;
+    public Animator swordAnimator;
+
     void Start()
     {
         Cursor.visible = false;
@@ -21,16 +25,18 @@ public class Movement : MonoBehaviour
     void Update()
     {
         this.transform.Rotate(0, Input.GetAxis("Mouse X") * 5f, 0);
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame && jump)
         {
             rb.linearVelocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().linearVelocity.x, 20f, this.gameObject.GetComponent<Rigidbody>().linearVelocity.z);
         }
-        if(Input.GetMouseButtonDown(0))
-        {
-            //Sword Slash stuff
-        }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(PerformSlash());
+        }
     }
+
     private void FixedUpdate()
     {
         x = Input.GetAxis("Horizontal");
@@ -40,6 +46,7 @@ public class Movement : MonoBehaviour
         rb.linearVelocity = move * 1000f * Time.fixedDeltaTime;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, prevUP, rb.linearVelocity.z);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (colided == null)
@@ -48,12 +55,20 @@ public class Movement : MonoBehaviour
             colided = other.gameObject;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject == colided)
+        if (other.gameObject == colided)
         {
             jump = false;
             colided = null;
         }
+    }
+
+    private IEnumerator PerformSlash()
+    {
+        swordAnimator.SetBool("swing", true);
+        yield return new WaitForSeconds(0.1f);
+        swordAnimator.SetBool("swing", false);
     }
 }

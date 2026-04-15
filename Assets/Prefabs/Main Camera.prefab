@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0146c494d003c843b30c7bfdc6082aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
+  swordAnimator: {fileID: 1308796436830872135}
 --- !u!65 &2472452226732232132
 BoxCollider:
   m_ObjectHideFlags: 0
