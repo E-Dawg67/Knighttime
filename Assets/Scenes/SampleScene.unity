@@ -1183,7 +1183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1480826799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,7 +1433,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!33 &535432534589241661
 MeshFilter:
@@ -1655,8 +1655,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 693598719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &6164894050955454600
-MeshCollider:
+--- !u!65 &6164894050955454600
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1668,15 +1668,14 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8733429697405204941, guid: 3ff26832746eed54d83ddeb28e0785c2, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.2993219, y: 0.29954386, z: 0.020999055}
+  m_Center: {x: -0.00009258813, y: -0.00000807829, z: -0.000000007450581}
 --- !u!4 &7378789356400615886
 Transform:
   m_ObjectHideFlags: 0
