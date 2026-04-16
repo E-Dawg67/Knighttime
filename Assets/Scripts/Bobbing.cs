@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class Bobbing : MonoBehaviour
+{
+    private float amplitude = .05f; // How high it bobs
+    private float frequency = 8f;   // How fast it bobs
+
+    Vector3 startPos;
+    private void Start()
+    {
+        startPos = transform.localPosition;
+    }
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    private void Update()
+    {
+        transform.localPosition = startPos + new Vector3(0, Mathf.Sin(Time.time * frequency) * amplitude, 0);
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+}

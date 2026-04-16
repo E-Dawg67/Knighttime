@@ -5,7 +5,7 @@ public class Bob : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     
-    private float amplitude = 0.05f; // How high it bobs
+    private float amplitude = 5f; // How high it bobs
     private float frequency = 8f;   // How fast it bobs
 
     Vector3 startPos;

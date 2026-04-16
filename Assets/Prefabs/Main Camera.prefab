@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0146c494d003c843b30c7bfdc6082aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
+  sword: {fileID: 7466355609216414595}
   swordAnimator: {fileID: 1308796436830872135}
 --- !u!65 &2472452226732232132
 BoxCollider:
@@ -238,6 +239,8 @@ GameObject:
   - component: {fileID: 5539455318391742903}
   - component: {fileID: 772759395184404471}
   - component: {fileID: 1308796436830872135}
+  - component: {fileID: 839943893397824189}
+  - component: {fileID: 15924403541612794}
   m_Layer: 0
   m_Name: FantasySword
   m_TagString: Untagged
@@ -340,3 +343,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &839943893397824189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466355609216414595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f63a9f0be0b3c4ca5b279b051bd353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!65 &15924403541612794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466355609216414595}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.030835425, y: 0.019999994, z: 0.5602732}
+  m_Center: {x: 0, y: 0.00000011920929, z: 0.12926501}

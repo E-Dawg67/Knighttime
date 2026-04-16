@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     float x, y, prevUP;
     Vector3 move;
     private GameObject colided;
+    public GameObject sword;
     private Rigidbody rb;
     private bool jump = true;
     public Animator swordAnimator;
@@ -68,7 +69,9 @@ public class Movement : MonoBehaviour
     private IEnumerator PerformSlash()
     {
         swordAnimator.SetBool("swing", true);
-        yield return new WaitForSeconds(0.1f);
+        sword.GetComponent<BoxCollider>().enabled = true;
+        yield return new WaitForSeconds(0.75f);
+        sword.GetComponent<BoxCollider>().enabled = false;
         swordAnimator.SetBool("swing", false);
     }
 }
