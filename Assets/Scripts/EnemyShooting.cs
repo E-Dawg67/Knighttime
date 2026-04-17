@@ -4,8 +4,8 @@ using UnityEngine.AI;
 public class EnemyShooter : MonoBehaviour
 {
     private Transform playerTarget;
-    public Transform enemy;
     private NavMeshAgent agent;
+    public GameObject soul;
     void Start()
     {
         GameObject playerObject = GameObject.Find("Main Camera");
@@ -25,6 +25,17 @@ public class EnemyShooter : MonoBehaviour
             agent.SetDestination(targetPosition);
             transform.LookAt(targetPosition);
             transform.Rotate(-90f, 0f, 90f);
+        }
+    }
+    public void dropSoul()
+    {
+        Instantiate(soul,transform.position + new Vector3(0,2f,0),transform.rotation);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "MainCamera")
+        {
+            GameObject.Find("GameManager").GetComponent<UIStuffs>().loseHealth();
         }
     }
 }

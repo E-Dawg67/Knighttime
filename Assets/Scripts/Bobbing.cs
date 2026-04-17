@@ -22,6 +22,8 @@ public class Bobbing : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            other.gameObject.GetComponent<EnemyShooter>().dropSoul();
+            GameObject.Find("GameManager").GetComponent<UIStuffs>().killEnemy();
             Destroy(other.gameObject);
         }
     }

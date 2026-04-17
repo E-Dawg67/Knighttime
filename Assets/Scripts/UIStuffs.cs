@@ -1,5 +1,6 @@
 using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIStuffs : MonoBehaviour
 {
@@ -11,25 +12,65 @@ public class UIStuffs : MonoBehaviour
     public GameObject health;
     public GameObject soulCounter;
     public GameObject enemiesLeft;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        //Gonna have to instantiate the number of enemeis at the beginning of each level
-        //then put that number as the enemies float.
-    }
+    public GameObject win, lose;
 
     // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        time += Time.deltaTime;
-        TMPro.TextMeshProUGUI ttext = timer.GetComponent<TMPro.TextMeshProUGUI>();
-        ttext.text = "Time: " + time.ToString();
         TMPro.TextMeshProUGUI htext = health.GetComponent<TMPro.TextMeshProUGUI>();
         htext.text = "Health: " + healthPoints.ToString();
         TMPro.TextMeshProUGUI stext = soulCounter.GetComponent<TMPro.TextMeshProUGUI>();
         stext.text = "Souls: " + souls.ToString();
         TMPro.TextMeshProUGUI etext = enemiesLeft.GetComponent<TMPro.TextMeshProUGUI>();
         etext.text = "Enemies Left: " + enemies.ToString();
+    }
+    void Update()
+    {
+        time -= Time.deltaTime;
+        TMPro.TextMeshProUGUI ttext = timer.GetComponent<TMPro.TextMeshProUGUI>();
+        ttext.text = "Time: " + time.ToString();
+        if (time < 0f)
+        {
+            time = 0f;
+            gameEnd(lose);
+        }
+    }
+    public void killEnemy()
+    {
+        enemies--;
+        TMPro.TextMeshProUGUI etext = enemiesLeft.GetComponent<TMPro.TextMeshProUGUI>();
+        etext.text = "Enemies Left: " + enemies.ToString();
+    }
+    public void soulPickUp()
+    {
+        souls++;
+        TMPro.TextMeshProUGUI stext = soulCounter.GetComponent<TMPro.TextMeshProUGUI>();
+        stext.text = "Souls: " + souls.ToString();
+    }
+    public void loseHealth()
+    {
+        healthPoints--;
+        TMPro.TextMeshProUGUI htext = health.GetComponent<TMPro.TextMeshProUGUI>();
+        htext.text = "Health: " + healthPoints.ToString();
+        if(healthPoints <= 0)
+        {
+            gameEnd(lose);
+        }
+    }
+    public void gameEnd(GameObject ui)
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        ui.SetActive(true);
+    }
+    public void resetlvl()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void nextlvl()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

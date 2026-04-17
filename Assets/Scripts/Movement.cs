@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -29,7 +30,7 @@ public class Movement : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame && jump)
         {
-            rb.linearVelocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().linearVelocity.x, 20f, this.gameObject.GetComponent<Rigidbody>().linearVelocity.z);
+            rb.linearVelocity = new Vector3(this.gameObject.GetComponent<Rigidbody>().linearVelocity.x, 15f, this.gameObject.GetComponent<Rigidbody>().linearVelocity.z);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -44,7 +45,7 @@ public class Movement : MonoBehaviour
         y = Input.GetAxis("Vertical");
         move = transform.right * x + transform.forward * y;
         prevUP = rb.linearVelocity.y;
-        rb.linearVelocity = move * 1000f * Time.fixedDeltaTime;
+        rb.linearVelocity = move * 800f * Time.fixedDeltaTime;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, prevUP, rb.linearVelocity.z);
     }
 
@@ -70,7 +71,7 @@ public class Movement : MonoBehaviour
     {
         swordAnimator.SetBool("swing", true);
         sword.GetComponent<BoxCollider>().enabled = true;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1f);
         sword.GetComponent<BoxCollider>().enabled = false;
         swordAnimator.SetBool("swing", false);
     }
